@@ -799,6 +799,7 @@ def get_hot_days_daterange(request):
         if locationData.count() <= 0:
             continue
         date_list = locationData.values_list('time__date', flat=True).distinct()
+        dates.extend(date_list)
         minVal = locationData.aggregate(Min("min_value"))["min_value__min"]
         maxVal = locationData.aggregate(Max("max_value"))["max_value__max"]
         avgVal = locationData.aggregate(Avg("avg_value"))["avg_value__avg"]
